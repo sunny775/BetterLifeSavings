@@ -1,0 +1,14 @@
+
+    .appbar{
+    padding:'0 10px';
+    height:'100% !important';
+    display:'flex';
+    flex-direction: row;
+    justify-content:'space-between';
+    background-color:'red'
+    }
+    .item{
+      color:'white';
+    text-decoration:'none';
+    opacity:0.8;
+    }
