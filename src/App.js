@@ -98,9 +98,9 @@ const App = () => {
           <RegisterRoute path="/register">
             <Register />
           </RegisterRoute>
-          <AccountRoute path="/support">
+          <Route path="/support">
             <Support />
-          </AccountRoute>
+          </Route>
           <AccountRoute path="/account">
             <Account />
           </AccountRoute>

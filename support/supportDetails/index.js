@@ -61,11 +61,4 @@ const H2 = styled.h2`
   text-align: center;
   padding-bottom: 4%;
   color: #fff;
-  :after {
-    color: #fff;
-    content: "_____";
-    display: block;
-    overflow: hidden;
-    text-align: center;
-  }
 `;
