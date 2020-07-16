@@ -66,9 +66,9 @@ class notificationService {
       });
   }
 
-  notifyUserOnDepositRequest({ owner, adminDevices }) {
-    if(!owner.deviceToken) return 
-    console.log(owner.deviceToken)
+  notifyUserOnDepositRequest({ owner, adminDevices, deviceToken }) {
+    if(!deviceToken) return 
+    console.log(deviceToken)
     const body = {
       notification: {
         title: "Better Life Savings",
@@ -77,7 +77,7 @@ class notificationService {
         click_action: config.clientBaseUrl,
         icon: "/apple-touch-icon.png",
       },
-      to: owner.deviceToken,
+      to: deviceToken,
     };
     axios
       .post("https://fcm.googleapis.com/fcm/send", {
@@ -99,8 +99,8 @@ class notificationService {
       });
   }
 
-  notifyUserOnWithdrawalRequest({ owner, adminDevices }) {
-    if(!owner.deviceToken) return 
+  notifyUserOnWithdrawalRequest({ owner, adminDevices, deviceToken }) {
+    if(!deviceToken) return 
     const body = {
       notification: {
         title: "Better Life Savings",
@@ -109,7 +109,7 @@ class notificationService {
         click_action: config.clientBaseUrl,
         icon: "/apple-touch-icon.png",
       },
-      to: owner.deviceToken,
+      to: deviceToken,
     };
     axios
       .post("https://fcm.googleapis.com/fcm/send", {

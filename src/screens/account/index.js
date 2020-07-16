@@ -194,14 +194,14 @@ const Account = () => {
             <Card.Title className="text-center text-primary">
               <strong>DASHBOARD</strong>
             </Card.Title>
-            <Card.Text className="text-left row">
+            <div className="text-left row m-2">
               <Col sm={6}>ACCOUNT NUMBER:</Col>
               <Balance sm={6}>{phoneNumber || ""}</Balance>
-            </Card.Text>
-            <Card.Text className="text-left row">
+            </div>
+            <div className="text-left row m-2">
               <Col sm={6}>BALANCE:</Col>
               <Balance sm={6}>₦175,500.00</Balance>
-            </Card.Text>
+            </div>
           </Card.Body>
         </Header>
         <Transactions>

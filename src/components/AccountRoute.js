@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Redirect, useHistory } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
-import {Spinner} from 'react-bootstrap'
-import styled from 'styled-components'
+import { Spinner } from "react-bootstrap";
+import styled from "styled-components";
 
 const LoadingOverlay = styled.div`
   background: rgba(0, 0, 0, 0.4);
@@ -17,43 +17,43 @@ const LoadingOverlay = styled.div`
 `;
 
 function AccountRoute({ children, ...rest }) {
-
   const { data, userDetails } = React.useContext(AuthContext);
-  if(data && userDetails){
+  if (data && userDetails) {
     const { phoneNumber, isAuth } = data;
+    console.log("isauth:", isAuth, userDetails);
 
     return (
       <Route
         {...rest}
         render={({ location }) =>
-          !isAuth? (
+          !isAuth ? (
             <Redirect
               to={{
                 pathname: "/sign-in",
                 state: { from: location },
               }}
             />
-          ) : !userDetails.username ? (
+          ) : userDetails.username ? (
+            children
+          ) : (
             <Redirect
               to={{
                 pathname: `/settings/${phoneNumber}/edit-profile`,
                 state: { from: location },
               }}
             />
-          ) : (
-            children
           )
         }
       />
     );
-  }else {
+  } else {
     return (
-        <LoadingOverlay>
-          <Spinner animation="border" role="status" variant="dark">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
-        </LoadingOverlay>
-      );
+      <LoadingOverlay>
+        <Spinner animation="border" role="status" variant="dark">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </LoadingOverlay>
+    );
   }
 }
 

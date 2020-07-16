@@ -7,7 +7,7 @@ function sendTokenToServer(currentToken) {
   const user = app.auth.currentUser;
   if (user) {
     app.db
-      .collection("users")
+      .collection("deviceTokens")
       .doc(user.phoneNumber)
       .set(
         {
@@ -17,6 +17,7 @@ function sendTokenToServer(currentToken) {
       )
       .then(function () {
         setTokenSentToServer(true);
+        console.log("Token sent to server");
       })
       .catch(function (error) {
         console.error("Error sending token: ", error);
@@ -34,7 +35,6 @@ function useGetUser() {
   const [error, setError] = useState(null);
   const [newUser, setNewUser] = useState(false);
   const [deviceToken, setDeviceToken] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [detailLoading, setDetailLoading] = useState(false);
   const [dpLoading, setDpLoading] = useState(false);
   const [file, setFile] = useState(null);
@@ -52,7 +52,7 @@ function useGetUser() {
       .then((currentToken) => {
         if (currentToken) {
           setDeviceToken(currentToken);
-          sendTokenToServer(currentToken);
+          // sendTokenToServer(currentToken);
           // notificationService.notifyNewUser(currentToken)
         } else {
           console.log(
@@ -73,7 +73,7 @@ function useGetUser() {
           console.log("Token refreshed.");
           setTokenSentToServer(false);
           setDeviceToken(refreshedToken);
-          sendTokenToServer(refreshedToken);
+          // sendTokenToServer(refreshedToken);
           // ...
         })
         .catch((err) => {
@@ -83,17 +83,21 @@ function useGetUser() {
     messaging.onMessage((payload) =>
       console.log("Message received. ", payload)
     );
-  }, [messaging]);
+  });
 
   useEffect(() => {
     const unregisterAuthObserver = auth.onAuthStateChanged(function (user) {
-      const data = user || {};
-      setData({ isAuth: !!user, ...data });
-      !user && setUserDetails({});
+      
+      if(user){
+        setData({ isAuth: !!user, ...user });
+        sendTokenToServer(deviceToken);
+      }else{
+        setUserDetails({});
+      }
       // getUserDetails(user);
     });
     return unregisterAuthObserver;
-  }, [auth]);
+  }, [auth, deviceToken]);
 
   useEffect(() => {
     if (data) {
@@ -153,7 +157,7 @@ function useGetUser() {
           .doc(user.phoneNumber)
           .set(
             {
-              ...details,
+              ...details
             },
             { merge: true }
           )
@@ -243,7 +247,6 @@ function useGetUser() {
     data,
     userDetails,
     newUser,
-    loading,
     detailLoading,
     dpLoading,
     whenAuth,
