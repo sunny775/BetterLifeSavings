@@ -18,7 +18,7 @@ const Section = styled.section`
   overflow: hidden;
   box-sizing: border-box;
   padding: 2vmin;
-  margin: 0;
+  margin: 100px 0;
 `;
 
 
