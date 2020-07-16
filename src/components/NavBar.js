@@ -121,7 +121,7 @@ export const NavBar = () => {
             </SignIn>
           </Link>
         ) : phoneNumber ? (
-          <Link to={`settings/${phoneNumber}/edit-profile`} style={buttons}>
+          <Link to={`/settings/${phoneNumber}/edit-profile`} style={buttons}>
             <img src={wallet} height="100%" alt="wallet" />
             <SignIn variant="outline-success" size="sm">
               <strong>{phoneNumber}</strong>

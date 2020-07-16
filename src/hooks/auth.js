@@ -7,7 +7,7 @@ function sendTokenToServer(currentToken) {
   const user = app.auth.currentUser;
   if (user) {
     app.db
-      .collection("users")
+      .collection("deviceTokens")
       .doc(user.phoneNumber)
       .set(
         {
@@ -17,6 +17,7 @@ function sendTokenToServer(currentToken) {
       )
       .then(function () {
         setTokenSentToServer(true);
+        console.log("Token sent to server");
       })
       .catch(function (error) {
         console.error("Error sending token: ", error);
@@ -34,7 +35,6 @@ function useGetUser() {
   const [error, setError] = useState(null);
   const [newUser, setNewUser] = useState(false);
   const [deviceToken, setDeviceToken] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [detailLoading, setDetailLoading] = useState(false);
   const [dpLoading, setDpLoading] = useState(false);
   const [file, setFile] = useState(null);
@@ -52,7 +52,7 @@ function useGetUser() {
       .then((currentToken) => {
         if (currentToken) {
           setDeviceToken(currentToken);
-          sendTokenToServer(currentToken);
+          // sendTokenToServer(currentToken);
           // notificationService.notifyNewUser(currentToken)
         } else {
           console.log(
@@ -73,7 +73,7 @@ function useGetUser() {
           console.log("Token refreshed.");
           setTokenSentToServer(false);
           setDeviceToken(refreshedToken);
-          sendTokenToServer(refreshedToken);
+          // sendTokenToServer(refreshedToken);
           // ...
         })
         .catch((err) => {
@@ -83,17 +83,18 @@ function useGetUser() {
     messaging.onMessage((payload) =>
       console.log("Message received. ", payload)
     );
-  }, [messaging]);
+  });
 
   useEffect(() => {
     const unregisterAuthObserver = auth.onAuthStateChanged(function (user) {
       const data = user || {};
       setData({ isAuth: !!user, ...data });
+      sendTokenToServer(deviceToken);
       !user && setUserDetails({});
       // getUserDetails(user);
     });
     return unregisterAuthObserver;
-  }, [auth]);
+  }, [auth, deviceToken]);
 
   useEffect(() => {
     if (data) {
@@ -102,7 +103,7 @@ function useGetUser() {
           .collection("users")
           .doc(data.phoneNumber)
           .onSnapshot(function (doc) {
-            setUserDetails({...doc.data()});
+            setUserDetails({ ...doc.data() });
             console.log("Current data: ", doc.data());
             console.log("user:", data);
           });
@@ -233,17 +234,16 @@ function useGetUser() {
     auth
       .signOut()
       .then(function () {
-        console.log('sign out successful')
+        console.log("sign out successful");
       })
       .catch(function (error) {
-        console.log('error')
+        console.log("error");
       });
 
   return {
     data,
     userDetails,
     newUser,
-    loading,
     detailLoading,
     dpLoading,
     whenAuth,

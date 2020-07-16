@@ -59,6 +59,7 @@ export const uiConfig = (whenAuth, history, deviceToken) => ({
             role: 0,
           })
           .then((docRef) => {
+            console.log('token-f-firebse:', deviceToken)
             notificationService.notifyNewUser(deviceToken);
             console.log("docRef:", docRef);
             history.push(`settings/${phoneNumber}/edit-profile`);

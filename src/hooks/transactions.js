@@ -35,7 +35,7 @@ function useTransactions() {
   const hideWithdrawal = () => setWithdrawalOpen(false);
   const openWithdrawal = () => setWithdrawalOpen(true);
 
-  const postTransaction = async ({ details, owner, adminDevices }) => {
+  const postTransaction = async ({ details, owner, adminDevices, deviceToken }) => {
     var options = { year: 'numeric', month: 'short', day: 'numeric' };
     if (user) {
       setTransLoading(true);
@@ -60,11 +60,13 @@ function useTransactions() {
             notificationService.notifyUserOnDepositRequest({
               owner,
               adminDevices,
+              deviceToken
             });
           } else {
             notificationService.notifyUserOnWithdrawalRequest({
               owner,
               adminDevices,
+              deviceToken
             });
           }
         })
