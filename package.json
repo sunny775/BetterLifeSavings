@@ -23,7 +23,6 @@
     "react-phone-number-input": "^3.0.24",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "react-snap": "^1.23.0",
     "styled-components": "^5.1.1",
     "yup": "^0.29.1"
   },
