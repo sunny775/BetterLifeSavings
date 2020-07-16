@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import firebase from "firebase";
-import { uiConfig } from "../config/firebase";
+// import firebase from "firebase";
+import { uiConfig, app } from "../config/firebase";
 import { useHistory } from "react-router-dom";
 
 import { AuthContext } from "../context/authContext";
@@ -28,7 +28,7 @@ function SignInModal() {
       </div>
       <StyledFirebaseAuth
         uiConfig={uiConfig(whenAuth, history, deviceToken)}
-        firebaseAuth={firebase.auth()}
+        firebaseAuth={app.auth}
       />
     </SignIn>
   );
