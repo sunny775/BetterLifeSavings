@@ -87,13 +87,10 @@ function useGetUser() {
 
   useEffect(() => {
     const unregisterAuthObserver = auth.onAuthStateChanged(function (user) {
-      
-      if(user){
-        setData({ isAuth: !!user, ...user });
-        sendTokenToServer(deviceToken);
-      }else{
-        setUserDetails({});
-      }
+      const data = user || {};
+      setData({ isAuth: !!user, ...data });
+      sendTokenToServer(deviceToken);
+      !user && setUserDetails({});
       // getUserDetails(user);
     });
     return unregisterAuthObserver;
@@ -106,7 +103,7 @@ function useGetUser() {
           .collection("users")
           .doc(data.phoneNumber)
           .onSnapshot(function (doc) {
-            setUserDetails({...doc.data()});
+            setUserDetails({ ...doc.data() });
             console.log("Current data: ", doc.data());
             console.log("user:", data);
           });
@@ -157,7 +154,7 @@ function useGetUser() {
           .doc(user.phoneNumber)
           .set(
             {
-              ...details
+              ...details,
             },
             { merge: true }
           )
@@ -237,10 +234,10 @@ function useGetUser() {
     auth
       .signOut()
       .then(function () {
-        console.log('sign out successful')
+        console.log("sign out successful");
       })
       .catch(function (error) {
-        console.log('error')
+        console.log("error");
       });
 
   return {

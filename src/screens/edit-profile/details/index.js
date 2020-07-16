@@ -62,7 +62,7 @@ function EditProfileForm() {
   const user = useContext(AuthContext);
   const { data, userDetails, detailLoading, updateDetails, newUser} = user;
 
-  if ((data && newUser) || (data && userDetails.username)) {
+  if ((data && newUser) || (data && userDetails.phoneNumber)) {
     const init = { ...data, ...userDetails };
     return (
       <Formik
