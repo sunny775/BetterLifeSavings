@@ -59,7 +59,7 @@ export const uiConfig = (whenAuth, history, deviceToken) => ({
             role: 0,
           })
           .then((docRef) => {
-            notificationService.notifyNewUser(deviceToken);
+            // notificationService.notifyNewUser(deviceToken);
             console.log("docRef:", docRef);
             history.push(`settings/${phoneNumber}/edit-profile`);
           })
