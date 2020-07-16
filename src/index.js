@@ -1,9 +1,10 @@
 import React from 'react';
-import { render } from 'react-dom';
+// import { render } from 'react-dom';
 import { HashRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import AuthProvider from './context/authContext'
 import App from './App';
+import { render } from 'react-snapshot';
 import './index.css'
 
 
