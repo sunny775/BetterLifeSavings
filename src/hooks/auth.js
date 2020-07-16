@@ -102,7 +102,7 @@ function useGetUser() {
           .collection("users")
           .doc(data.phoneNumber)
           .onSnapshot(function (doc) {
-            setUserDetails(doc.data());
+            setUserDetails({...doc.data()});
             console.log("Current data: ", doc.data());
             console.log("user:", data);
           });
