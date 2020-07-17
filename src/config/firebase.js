@@ -52,7 +52,7 @@ export const uiConfig = (whenAuth, history, deviceToken) => ({
       const { phoneNumber, uid } = authResult.user;
       if (isNewUser) {
         db.collection("users")
-          .doc(phoneNumber)
+          .doc(uid)
           .set({
             uid,
             phoneNumber,

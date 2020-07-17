@@ -20,7 +20,6 @@ function AccountRoute({ children, ...rest }) {
   const { data, userDetails } = React.useContext(AuthContext);
   if (data && userDetails) {
     const { phoneNumber, isAuth } = data;
-    console.log("isauth:", isAuth, userDetails);
 
     return (
       <Route

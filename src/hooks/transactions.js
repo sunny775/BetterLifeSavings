@@ -14,10 +14,10 @@ function useTransactions() {
 
   useEffect(() => {
     if (user) {
-      const { phoneNumber } = user;
+      const { uid } = user;
       const unsubscribe = db
         .collection("transactions")
-        .where("owner", "==", `${phoneNumber}`)
+        .where("owner", "==", `${uid}`)
         .onSnapshot(function (querySnapshot) {
           var transactions = [];
           querySnapshot.forEach(function (doc) {
@@ -36,13 +36,12 @@ function useTransactions() {
   const openWithdrawal = () => setWithdrawalOpen(true);
 
   const postTransaction = async ({ details, owner, adminDevices, deviceToken }) => {
-    var options = { year: 'numeric', month: 'short', day: 'numeric' };
     if (user) {
       setTransLoading(true);
       db.collection("transactions")
         .add({
           ...details,
-          owner: owner.phoneNumber,
+          owner: owner.uid,
           date: new Date().toISOString(),
           ownerDetails: {
             name: owner.displayName,
