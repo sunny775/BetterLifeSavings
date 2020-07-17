@@ -8,7 +8,7 @@ function sendTokenToServer(currentToken) {
   if (user) {
     app.db
       .collection("deviceTokens")
-      .doc(user.phoneNumber)
+      .doc(user.uid)
       .set(
         {
           deviceToken: currentToken,
@@ -98,10 +98,10 @@ function useGetUser() {
 
   useEffect(() => {
     if (data) {
-      if (data.phoneNumber) {
+      if (data.uid) {
         const unsubscribe = db
           .collection("users")
-          .doc(data.phoneNumber)
+          .doc(data.uid)
           .onSnapshot(function (doc) {
             setUserDetails({ ...doc.data() });
             console.log("Current data: ", doc.data());
@@ -112,7 +112,7 @@ function useGetUser() {
     }
   }, [db, data]);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const unsubscribe = db
       .collection("users")
       .where("role", "==", 1)
@@ -128,7 +128,7 @@ function useGetUser() {
       });
 
     return () => unsubscribe();
-  }, [db]);
+  }, [db]);*/
 
   const whenAuth = (isNewUser) => {
     setNewUser(isNewUser);
@@ -151,7 +151,7 @@ function useGetUser() {
       try {
         const doc = db
           .collection("users")
-          .doc(user.phoneNumber)
+          .doc(user.uid)
           .set(
             {
               ...details,
@@ -180,9 +180,33 @@ function useGetUser() {
     }
   };
 
+  const putNewFile = (fileName, metadata, uid) => {
+    storageRef
+      .child("user-images/" + fileName)
+      .put(file, metadata)
+      .then(function (snapshot) {
+        snapshot.ref.getDownloadURL().then(function (url) {
+          console.log("File available at", url);
+          db.collection("users")
+            .doc(uid)
+            .set(
+              {
+                ...snapshot.metadata.customMetadata,
+                url,
+              },
+              { merge: true }
+            )
+            .then(() => {
+              successNotice("Profile photo successfully updated.");
+              setDpLoading(false);
+            });
+        });
+      });
+  };
+
   const uploadDp = (file) => {
-    const fileName = Date.now() + "-" + file.name;
-    const { phoneNumber } = user;
+    const fileName = user.uid + "-" + file.name;
+    const { phoneNumber, uid } = user;
     const metadata = {
       contentType: file.type,
       customMetadata: {
@@ -192,38 +216,14 @@ function useGetUser() {
     };
     setDpLoading(true);
     try {
-      storageRef
-        .child("user-images/" + fileName)
-        .put(file, metadata)
-        .then(function (snapshot) {
-          snapshot.ref.getDownloadURL().then(function (url) {
-            console.log("File available at", url);
-            db.collection("users")
-              .doc(phoneNumber)
-              .set(
-                {
-                  ...snapshot.metadata.customMetadata,
-                  url,
-                },
-                { merge: true }
-              )
-              .then((doc) => {
-                const { fileName } = userDetails;
-                if (fileName) {
-                  var ref = storageRef.child(`user-images/${fileName}`);
-                  ref.delete().then(function () {
-                    successNotice("Profile photo successfully updated");
-                    console.log("old file deleted");
-                    setDpLoading(false);
-                  });
-                } else {
-                  successNotice("Profile photo successfully updated.");
-                  console.log("NO OLD FILE");
-                  setDpLoading(false);
-                }
-              });
-          });
+      if (userDetails.fileName) {
+        var ref = storageRef.child(`user-images/${userDetails.fileName}`);
+        ref.delete().then(function () {
+          putNewFile(fileName, metadata, uid);
         });
+      } else {
+        putNewFile(fileName, metadata, uid);
+      }
     } catch (error) {
       console.log(error);
       setError(error);

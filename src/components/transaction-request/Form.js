@@ -22,7 +22,6 @@ const Div = styled.div`
 `;
 
 export default ({ owner, adminDevices, postTransaction, loading, type }) => {
-  console.log(owner);
 
   return (
     <Formik
