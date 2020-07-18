@@ -98,6 +98,12 @@ export const MobileView = ({ width, close, data, userDetails }) => {
           Blog
         </Link>
       </div>
+      <div onClick={close}>
+        {" "}
+        <Link to="/support" className="nav-link">
+          Support
+        </Link>
+      </div>
       <Wallet className="nav-link" onClick={close}>
         {username ? (
           <Link to="/account" style={buttons}>

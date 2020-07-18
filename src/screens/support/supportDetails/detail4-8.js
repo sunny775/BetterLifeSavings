@@ -49,7 +49,7 @@ const Details4to8 = () => (
     </Card.Header>
     <AccordionCollapse eventKey="6">
       <Card.Body>
-        You either pay cash to a BetterLifesavings agent or make transfer from any Nigerian bank with a bank app or through internet banking.
+        No, we don’t have a minimum account balance.
       </Card.Body>
     </AccordionCollapse>
   </Card>
@@ -145,6 +145,18 @@ const Details4to8 = () => (
     <AccordionCollapse eventKey="14">
       <Card.Body>
         Our contact details is on the lower left side of our webpage footer.
+      </Card.Body>
+    </AccordionCollapse>
+  </Card>
+  <Card>
+    <Card.Header>
+      <Accordion.Toggle style={styles} as={Button} variant="link" eventKey="15">
+        How do credit my BetterLifesavings account?
+      </Accordion.Toggle>
+    </Card.Header>
+    <AccordionCollapse eventKey="15">
+      <Card.Body>
+        You either pay cash to a BetterLifesavings agent or make transfer from any Nigerian bank with a bank app or through internet banking.
       </Card.Body>
     </AccordionCollapse>
   </Card>

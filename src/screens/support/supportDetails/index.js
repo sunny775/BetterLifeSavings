@@ -50,7 +50,7 @@ const HeadingWrapper = styled.div`
 `;
 const SectionA = styled.section`
     margin-bottom: 5%;
-    margin-top: 4rem;
+    margin-top: 6rem;
 `;
 const MainHeading = styled.h1`
     verticalHeight: middle;
