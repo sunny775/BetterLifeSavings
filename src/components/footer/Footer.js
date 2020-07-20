@@ -109,9 +109,22 @@ export default () => {
             <H4 className="display-4">
               6, Omokudu Ajayi Street, Okuneye Estate, Egbe. Lagos Nigeria.
             </H4>
-            <H4 className="display-4">Telephone +2348055018140</H4>
+            <H4 className="display-4">Telephone:  <br />
+              <a 
+                href="tel:+2348055018140"
+                style={{color: 'white'}}
+              >
+                +2348055018140
+              </a>
+            </H4>
             <H4 className="display-4">
-              e-mail: betterlifesavings2020@gmail.com
+              e-mail:  <br />
+              <a 
+                href="mailto:betterlifesavings2020@gmail.com"
+                style={{color: 'white'}}
+              >
+                betterlifesavings2020@gmail.com
+              </a>
             </H4>
           </div>
         </div>
