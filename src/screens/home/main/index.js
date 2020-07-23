@@ -40,12 +40,19 @@ color: white;
     opacity: 0.9;
   }
   box-shadow: 0px 1px 0px 0px #bdbdbd;
-`
+`;
+const BannerDivText = styled.div`
+  background-color: rgba(46, 125, 50, 0.7);
+  padding: 6rem 2rem;
+  @media screen (max-width:525px) {
+    padding: 1rem 0;
+  }
+`;
 
 const Main = () => (
   <Section className="col-md-9">
     <Banner>
-      <div>
+      <BannerDivText>
         <h2 style={{ fontWeight: "bold" }}>Plan Your Future by Saving Today</h2>
         <h4>
           Do not save what is left after spending
@@ -55,7 +62,7 @@ const Main = () => (
         <Button variant="secondary" size="sm">
           Start Now
         </Button>
-      </div>
+      </BannerDivText>
     </Banner>
     <H className='bg-secondary'>Saving Plans</H>
     <Plan>
