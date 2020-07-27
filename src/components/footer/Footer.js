@@ -52,11 +52,17 @@ const Footer = styled.footer`
     text-align: center;
     margin-top: 50px;
     color: white;
+    padding: 0 8%;
     padding-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
   }
   @media (max-width: 767px) {
     .footer-cards .card {
       background: none;
+    }
+    .copyright {
+      display: block;
     }
   }
 `;
@@ -105,7 +111,7 @@ export default () => {
       <div className="row footer-cards">
         <div className="card text-white col-md-4">
           <div className="card-body">
-            <h4 className="display-6">BETTER LIFE SAVINGS</h4>
+            <h4 className="display-6">BetterLifesavings</h4>
             <H4 className="display-4">
               6, Omokudu Ajayi Street, Okuneye Estate, Egbe. Lagos Nigeria.
             </H4>
@@ -213,6 +219,10 @@ export default () => {
           © {new Date().getFullYear()} Betterlife Savings Int'l, all rights
           reserved
         </p>
+        
+        <div style={{color: '#d9d9d9'}}>
+            Designed at <a  style={{color: '#fff'}} href="http://eloshines.com">Eloshines</a>
+        </div>
       </div>
       </Overlay>
     </Footer>
