@@ -67,7 +67,7 @@ const Details4to8 = () => (
   <Card>
     <Card.Header>
       <Accordion.Toggle style={styles} as={Button} variant="link" eventKey="8">
-      We’ll deliver your BetterLifesavings card to you anywhere in country. 
+      Since you don't have branches, how will I get my BetterLifesavings card? 
       </Accordion.Toggle>
     </Card.Header>
     <AccordionCollapse eventKey="8">
