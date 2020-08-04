@@ -50,7 +50,7 @@ const HeadingWrapper = styled.div`
 `;
 const SectionA = styled.section`
     margin-bottom: 5%;
-    margin-top: 6rem;
+    margin-top: 4rem;
 `;
 const MainHeading = styled.h1`
     verticalHeight: middle;
@@ -61,11 +61,4 @@ const H2 = styled.h2`
   text-align: center;
   padding-bottom: 4%;
   color: #fff;
-  :after {
-    color: #fff;
-    content: "_____";
-    display: block;
-    overflow: hidden;
-    text-align: center;
-  }
 `;
