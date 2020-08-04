@@ -68,8 +68,8 @@ const SignIn = styled(Button)`
 `;
 
 export const MobileView = ({ width, close, data, userDetails }) => {
-  const { username } = userDetails;
-  const { phoneNumber } = data;
+  //const { username } = userDetails;
+  //const { phoneNumber } = data;
 
   return (
     <SideNav id="mySidenav" width={width}>
@@ -98,30 +98,32 @@ export const MobileView = ({ width, close, data, userDetails }) => {
           Blog
         </Link>
       </div>
-      <Wallet className="nav-link" onClick={close}>
-        {username ? (
-          <Link to="/account" style={buttons}>
-            <img src={wallet} height="100%" alt="wallet" />
-            <SignIn variant="outline-success" size="sm">
-              <strong>{username}</strong>
-            </SignIn>
-          </Link>
-        ) : phoneNumber ? (
-          <Link to={`/settings/${phoneNumber}/edit-profile`} style={buttons}>
-            <img src={wallet} height="100%" alt="wallet" />
-            <SignIn variant="outline-success" size="sm">
-              <strong>{phoneNumber}</strong>
-            </SignIn>
-          </Link>
-        ) : (
-          <Link to="/sign-in" style={buttons}>
-            <img src={wallet} height="100%" alt="wallet" />
-            <SignIn variant="outline-success" size="sm">
-              sign in
-            </SignIn>
-          </Link>
-        )}
-      </Wallet>
+      {data && userDetails && (
+        <Wallet className="nav-link" onClick={close}>
+          {userDetails.username ? (
+            <Link to="/account" style={buttons}>
+              <img src={wallet} height="100%" alt="wallet" />
+              <SignIn variant="outline-success" size="sm">
+                <strong>{userDetails.username}</strong>
+              </SignIn>
+            </Link>
+          ) : data.phoneNumber ? (
+            <Link to={`/settings/${data.phoneNumber}/edit-profile`} style={buttons}>
+              <img src={wallet} height="100%" alt="wallet" />
+              <SignIn variant="outline-success" size="sm">
+                <strong>{data.phoneNumber}</strong>
+              </SignIn>
+            </Link>
+          ) : (
+            <Link to="/sign-in" style={buttons}>
+              <img src={wallet} height="100%" alt="wallet" />
+              <SignIn variant="outline-success" size="sm">
+                sign in
+              </SignIn>
+            </Link>
+          )}
+        </Wallet>
+      )}
     </SideNav>
   );
 };

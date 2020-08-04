@@ -7,8 +7,6 @@ const user = auth.currentUser;*/
 
 const server =
   "AAAATCLtp8Q:APA91bGjZsBRHJTI7r0VLGfacrPakb-nuC8wMt4WYTBg6siIM5hTVUm5ZjY_wVVLk1FmAO2Lxtdiqz3b_-5g6F0XEPvzeb4PNZvfjKSbBcW5Air7UQ_mwUlXKD9KhVFPfyO907OVKX5m";
-const device =
-  "dyRH2Q6zeStyAHCbrvK0xR:APA91bEVj-lxkfAN7NfkVe1T9-RpL-50xlmJcOQok8VB-4Vr4gi7PUUziP4wOY5TuL5wgbce8W0E1rVzuH3vEcn5vGp636gTaj5JOuUotz0LnpXXw9v9KwVI5M6IISgIWVyV6wGKRtiu";
 
 class notificationService {
   constructor() {
@@ -44,29 +42,8 @@ class notificationService {
       });
   }
 
-  notifyAdminOnTransactionRequest({ device, type, owner }) {
-    const body = {
-      notification: {
-        title: "Better Life Savings",
-        body: `New ${type} request from ${owner}`,
-        click_action: config.clientBaseUrl,
-        icon: "/apple-touch-icon.png",
-      },
-      to: device,
-    };
-    axios
-      .post("https://fcm.googleapis.com/fcm/send", {
-        ...body,
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-      });
-  }
-
-  notifyUserOnDepositRequest({ owner, adminDevices, deviceToken }) {
+ 
+  notifyUserOnDepositRequest(deviceToken) {
     if(!deviceToken) return 
     console.log(deviceToken)
     const body = {
@@ -85,21 +62,14 @@ class notificationService {
       })
       .then((response) => {
         console.log(response);
-        if(!adminDevices.length) return response;
-        adminDevices.forEach((device) => {
-          this.notifyAdminOnTransactionRequest({
-            device,
-            type: "deposit",
-            owner: owner.displayName,
-          });
-        });
+        return response;
       })
       .catch((error) => {
         console.log(error.response.data);
       });
   }
 
-  notifyUserOnWithdrawalRequest({ owner, adminDevices, deviceToken }) {
+  notifyUserOnWithdrawalRequest(deviceToken ) {
     if(!deviceToken) return 
     const body = {
       notification: {
@@ -117,14 +87,8 @@ class notificationService {
       })
       .then((response) => {
         console.log(response);
-        if(!adminDevices.length) return response;
-        adminDevices.forEach((device) => {
-          this.notifyAdminOnTransactionRequest({
-            device,
-            type: "withdrawal",
-            owner: owner.displayName,
-          });
-        });
+       return response;
+        
       })
       .catch((error) => {
         console.log(error.response.data);

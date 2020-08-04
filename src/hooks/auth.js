@@ -40,8 +40,6 @@ function useGetUser() {
   const [file, setFile] = useState(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
   const [showPreview, setShowPreview] = useState(false);
-  const [admins, setAdmins] = useState([]);
-  const [adminDevices, setAdminDevices] = useState([]);
 
   const { auth, db, storageRef, messaging } = app;
   const user = auth.currentUser;
@@ -91,7 +89,6 @@ function useGetUser() {
       setData({ isAuth: !!user, ...data });
       sendTokenToServer(deviceToken);
       !user && setUserDetails({});
-      // getUserDetails(user);
     });
     return unregisterAuthObserver;
   }, [auth, deviceToken]);
@@ -111,24 +108,6 @@ function useGetUser() {
       }
     }
   }, [db, data]);
-
-  /*useEffect(() => {
-    const unsubscribe = db
-      .collection("users")
-      .where("role", "==", 1)
-      .onSnapshot(function (querySnapshot) {
-        const admins = [];
-        const adminDevices = [];
-        querySnapshot.forEach(function (doc) {
-          admins.push({ id: doc.id, ...doc.data() });
-          adminDevices.push(doc.data().deviceToken);
-        });
-        setAdmins(admins);
-        setAdminDevices(adminDevices);
-      });
-
-    return () => unsubscribe();
-  }, [db]);*/
 
   const whenAuth = (isNewUser) => {
     setNewUser(isNewUser);
@@ -257,48 +236,8 @@ function useGetUser() {
     updateDetails,
     uploadDp,
     deviceToken,
-    admins,
-    adminDevices,
     signOut,
   };
 }
 
 export default useGetUser;
-
-/*
-const find = () => {
-    setLoading(true);
-    userService
-      .getUser()
-      .then((user) => {
-        setData(user);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setData(error);
-        setLoading(false);
-      });
-  };
-
-  const save = (value) => {
-    setLoading(true);
-    userService
-      .createUser(value)
-      .then((user) => {
-        console.log("postresutl:", user);
-        setData({ isAuth: true, ...user });
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log("postresutl:", err);
-        setData({ isAuth: false, ...err });
-        setLoading(false);
-      });
-  };
-  const login = async (options) => {
-    setLoading(true);
-    const user = await userService.login(options);
-    setData(user);
-    setLoading(false);
-  };
-*/

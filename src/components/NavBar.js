@@ -85,8 +85,8 @@ export const NavBar = () => {
   const closeMobileNav = () => setMobileWidth("0px");
 
   const { data, userDetails } = useContext(AuthContext);
-  const { username } = userDetails;
-  const { phoneNumber } = data;
+  //const { username } = userDetails;
+  //const { phoneNumber } = data;
   return (
     <Nav id="navbar">
       <Left id="navbar-left">
@@ -113,18 +113,18 @@ export const NavBar = () => {
       </Left>
 
       <Wallet>
-        {username ? (
+        {userDetails && userDetails.username ? (
           <Link to="/account" style={buttons}>
             <img src={wallet} height="100%" alt="wallet" />
             <SignIn variant="outline-success" size="sm">
-              <strong>{username}</strong>
+              <strong>{userDetails.username}</strong>
             </SignIn>
           </Link>
-        ) : phoneNumber ? (
-          <Link to={`/settings/${phoneNumber}/edit-profile`} style={buttons}>
+        ) : data && data.phoneNumber ? (
+          <Link to={`/settings/${data.phoneNumber}/edit-profile`} style={buttons}>
             <img src={wallet} height="100%" alt="wallet" />
             <SignIn variant="outline-success" size="sm">
-              <strong>{phoneNumber}</strong>
+              <strong>{data.phoneNumber}</strong>
             </SignIn>
           </Link>
         ) : (
