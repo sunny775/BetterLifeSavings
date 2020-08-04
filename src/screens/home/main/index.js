@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import bg from "../../../images/1.jpg";
+import {Link} from 'react-router-dom'
 import { Button, Row, Col, Image } from "react-bootstrap";
 import Img from "../../../images/save1.jpg";
 
@@ -48,6 +49,14 @@ const BannerDivText = styled.div`
     padding: 1rem 0;
   }
 `;
+const StartNow = styled(Link)`
+text-decoration: none;
+color: white;
+&:hover{
+  color: white;
+  text-decoration: none;
+}
+`
 
 const Main = () => (
   <Section className="col-md-9">
@@ -60,7 +69,7 @@ const Main = () => (
           spend what is left <strong>after saving</strong>
         </h4>
         <Button variant="secondary" size="sm">
-          Start Now
+          <StartNow to='/sign-in'>Start Now</StartNow>
         </Button>
       </BannerDivText>
     </Banner>
@@ -72,7 +81,7 @@ const Main = () => (
       <Col sm={6}>
         <h1>Daily Plan</h1>
         <p>This is the plan where you pick a particular and most convenient rate (e.g #100, #200 etc) and you pay daily. You can pay as much as you have, as many times and the sweetest thing is you can make debit anytime you like. Please note that you will be charged according to the rate at which pay on a monthly basis.</p>
-        <Button variant="info">start now</Button>
+        <Button variant="info"> <StartNow to='/sign-in'>Start Now</StartNow></Button>
       </Col>
     </Plan>
     <Plan>
@@ -82,7 +91,7 @@ const Main = () => (
       <Col sm={6} md={{ order: 1}}>
         <h1>Weekly Plan</h1>
         <p>This is the plan where you pick a particular and most convenient rate just like the daily plan and you pay on a weekly basis. You can make payments as much as you have and as many times. You will only be charged at your point of collection</p>
-        <Button variant="info">start now</Button>
+        <Button variant="info"> <StartNow to='/sign-in'>Start Now</StartNow></Button>
       </Col>
     </Plan>
     <Plan>
@@ -92,7 +101,7 @@ const Main = () => (
       <Col sm={6}>
         <h1>Monthly Plan</h1>
         <p>This is the plan where you pick a particular and most convenient rate and you pay on a monthly basis. You can make payments as much as you have and as many times. You will only be charged at your point of collection</p>
-        <Button variant="info">start now</Button>
+        <Button variant="info"> <StartNow to='/sign-in'>Start Now</StartNow></Button>
       </Col>
     </Plan>
     <Plan>
@@ -102,7 +111,7 @@ const Main = () => (
       <Col sm={6} md={{ order: 1}}>
         <h1>Express Plan</h1>
         <p>This plan doesn’t require you to pick a rate. Just pay as much as you have and as many times and make debit whenever you like</p>
-        <Button variant="info">start now</Button>
+        <Button variant="info"> <StartNow to='/sign-in'>Start Now</StartNow></Button>
       </Col>
     </Plan>
   </Section>

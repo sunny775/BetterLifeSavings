@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 
-function RegisterRoute({ children, ...rest }) {
+function SignInRoute({ children, ...rest }) {
     const user = React.useContext(AuthContext).data;
     console.log('wo:', user)
   return (
@@ -23,4 +23,4 @@ function RegisterRoute({ children, ...rest }) {
     />
   );
 }
-export default RegisterRoute
+export default SignInRoute
