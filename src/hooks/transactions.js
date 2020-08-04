@@ -7,9 +7,9 @@ function useTransactions() {
   const [userTransactions, setUserTransactions] = useState({});
   const [depositOpen, setDepositOpen] = useState(false);
   const [transLoading, setTransLoading] = useState(false);
-  const [withdrawalOpen, setWithdrawalOpen] = useState(false)
+  const [withdrawalOpen, setWithdrawalOpen] = useState(false);
 
-  const { auth, db, messaging } = app;
+  const { auth, db } = app;
   const user = auth.currentUser;
 
   useEffect(() => {
@@ -35,7 +35,11 @@ function useTransactions() {
   const hideWithdrawal = () => setWithdrawalOpen(false);
   const openWithdrawal = () => setWithdrawalOpen(true);
 
-  const postTransaction = async ({ details, owner, adminDevices, deviceToken }) => {
+  const postTransaction = async ({
+    details,
+    owner,
+    deviceToken,
+  }) => {
     if (user) {
       setTransLoading(true);
       db.collection("transactions")
@@ -54,19 +58,13 @@ function useTransactions() {
           setTransLoading(false);
           hideDeposit();
           hideWithdrawal();
-          successNotice(`Your ${details.type} request has been sent. Our agents will contact you on further steps`);
+          successNotice(
+            `Your ${details.type} request has been sent. Our agents will contact you on further steps`
+          );
           if (details.type === "deposit") {
-            notificationService.notifyUserOnDepositRequest({
-              owner,
-              adminDevices,
-              deviceToken
-            });
+            notificationService.notifyUserOnDepositRequest(deviceToken);
           } else {
-            notificationService.notifyUserOnWithdrawalRequest({
-              owner,
-              adminDevices,
-              deviceToken
-            });
+            notificationService.notifyUserOnWithdrawalRequest(deviceToken);
           }
         })
         .catch(function (error) {
@@ -84,7 +82,7 @@ function useTransactions() {
     transLoading,
     withdrawalOpen,
     hideWithdrawal,
-    openWithdrawal
+    openWithdrawal,
   };
 }
 

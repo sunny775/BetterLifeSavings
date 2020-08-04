@@ -15,7 +15,7 @@ export default () => {
     userDetails,
     withdrawalOpen,
     hideWithdrawal,
-    adminDevices,
+    deviceToken,
     postTransaction,
     transLoading,
   } = React.useContext(AuthContext);
@@ -33,7 +33,7 @@ export default () => {
       <Owner data={userDetails} />
       <Form
         owner={userDetails}
-        adminDevices={adminDevices}
+        deviceToken={deviceToken}
         postTransaction={postTransaction}
         loading={transLoading}
         type="withdrawal"

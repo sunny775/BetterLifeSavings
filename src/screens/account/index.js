@@ -120,7 +120,14 @@ const Account = () => {
     openWithdrawal,
     userTransactions,
   } = React.useContext(AuthContext);
-  const { displayName, state, url, email, phoneNumber } = userDetails;
+  const {
+    displayName,
+    state,
+    url,
+    email,
+    phoneNumber,
+    accountBalance,
+  } = userDetails;
 
   const getTransactions = () => {
     if (userTransactions.length) {
@@ -142,7 +149,9 @@ const Account = () => {
             <td>{`${date} / ${time}`}</td>
             <td>₦{e.amount}</td>
             <td>
-              <Badge variant={`${e.status ? 'success' : 'secondary'}`}>{e.status ? "approved" : 'requested'}</Badge>
+              <Badge variant={`${e.status ? "success" : "secondary"}`}>
+                {e.status ? "approved" : "requested"}
+              </Badge>
             </td>
           </tr>
         );
@@ -204,7 +213,7 @@ const Account = () => {
             </div>
             <div className="text-left row m-2">
               <Col sm={6}>BALANCE:</Col>
-              <Balance sm={6}>₦175,500.00</Balance>
+              <Balance sm={6}>₦{accountBalance || 0.0}</Balance>
             </div>
           </Card.Body>
         </Header>

@@ -21,7 +21,8 @@ const Div = styled.div`
   padding: 30px;
 `;
 
-export default ({ owner, adminDevices, postTransaction, loading, type }) => {
+export default ({ owner, postTransaction, loading, type, deviceToken }) => {
+ 
   return (
     <Formik
       validationSchema={schema}
@@ -29,7 +30,7 @@ export default ({ owner, adminDevices, postTransaction, loading, type }) => {
         postTransaction({
           details: { ...value, type },
           owner,
-          adminDevices,
+          deviceToken
         })
       }
       initialValues={{

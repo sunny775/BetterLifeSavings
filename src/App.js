@@ -1,7 +1,5 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { AppBar } from "./components/AppBar";
-import { TopNav } from "./components/TopNav";
 import {NavBar} from './components/NavBar'
 import SignInModal from "./components/SignIn";
 import styles from "./App.module.css";
@@ -73,9 +71,9 @@ const App = () => {
       );
     }
   }, []);
-  const { data, userDetails } = React.useContext(AuthContext);
+  //const { data, userDetails } = React.useContext(AuthContext);
 
-  if (data && userDetails) {
+  //if (data && userDetails) {
     return (
       <div className={styles.App}>
         <ReactNotification />
@@ -117,8 +115,7 @@ const App = () => {
         <Footer />
       </div>
     );
-  } else {
-    return <Loader />;
-  }
+ // }
+   // return <Loader />;
 };
 export default App;
