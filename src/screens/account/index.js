@@ -6,14 +6,14 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 
 const formatDate = (iso) => {
-  var options = { year: 'numeric', month: 'short', day: 'numeric' };
-  const date = new Date(iso).toLocaleDateString('en-US', options);
-  const time = new Date(iso).toLocaleTimeString('en-US');
+  var options = { year: "numeric", month: "short", day: "numeric" };
+  const date = new Date(iso).toLocaleDateString("en-US", options);
+  const time = new Date(iso).toLocaleTimeString("en-US");
   return {
     date,
-    time
-  }
-}
+    time,
+  };
+};
 
 const Acct = styled(Row)`
   background: #eee;
@@ -124,13 +124,17 @@ const Account = () => {
 
   const getTransactions = () => {
     if (userTransactions.length) {
-      userTransactions.sort(function(a, b){
-        if(a.date < b.date) { return -1; }
-        if(a.date > b.date) { return 1; }
+      userTransactions.sort(function (a, b) {
+        if (a.date < b.date) {
+          return -1;
+        }
+        if (a.date > b.date) {
+          return 1;
+        }
         return 0;
-    })
+      });
       return userTransactions.reverse().map((e, i) => {
-       const {date, time} = formatDate(e.date)
+        const { date, time } = formatDate(e.date);
         return (
           <tr key={e.id}>
             <td>{i + 1}</td>
@@ -138,7 +142,7 @@ const Account = () => {
             <td>{`${date} / ${time}`}</td>
             <td>₦{e.amount}</td>
             <td>
-              <Badge variant="secondary">Requested</Badge>
+              <Badge variant="secondary">{e.status ? "approved" : null}</Badge>
             </td>
           </tr>
         );

@@ -22,13 +22,12 @@ const Div = styled.div`
 `;
 
 export default ({ owner, adminDevices, postTransaction, loading, type }) => {
-
   return (
     <Formik
       validationSchema={schema}
       onSubmit={(value) =>
         postTransaction({
-          details: { ...value, status: "requested", type },
+          details: { ...value, type },
           owner,
           adminDevices,
         })
