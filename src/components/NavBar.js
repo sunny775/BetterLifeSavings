@@ -28,7 +28,7 @@ const Wallet = styled.div`
   height: 50px;
   width: fit-content;
   float: right !important;
-  @media (max-width: 870px) {
+  @media (max-width: 900px) {
     display: none;
   }
 `;
@@ -38,9 +38,9 @@ const SignIn = styled(Button)`
   margin-left: 10px;
 `;
 const Div = styled.div`
-  height: 120px;
+  height: 96px;
   display: flex;
-  width: 120px;
+  width: 96px;
   background-colof: red;
   border-radius: 50%;
   background-image: url(${logo});
@@ -63,8 +63,13 @@ const NavLink = styled(Link)`
 const Brand = styled.div`
   font-family: "Lobster", cursive;
   opacity: 0.8;
-  font-size: calc(4px + 2vmin);
+  font-size: calc(6px + 2.2vmin);
   padding-right: 20px;
+  letter-spacing: 1px;
+  small{
+    font-size: calc(2px + 1vmin);
+    color: #eee;
+  }
 `;
 const Span = styled.span`
   color: white;
@@ -72,7 +77,7 @@ const Span = styled.span`
   padding: 20px;
   padding-right: 40px;
   cursor: pointer;
-  @media (min-width: 870px) {
+  @media (min-width: 900px) {
     display: none;
   }
 `;
@@ -96,7 +101,8 @@ export const NavBar = () => {
           </Link>
         </div>
         <Brand>
-          <NavLink to="/">...helping you save for a BetterLife</NavLink>
+          <NavLink to="/">BetterLifesavings</NavLink>
+          <small style={{display: 'block'}}>...helping you save for a BetterLife</small>
         </Brand>
         <NavItem>
           <NavLink to="/about">About Us</NavLink>

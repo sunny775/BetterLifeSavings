@@ -26,7 +26,7 @@ export const teamsInfo = [
         title: 'Chief Operations Officer',
         profile_pic: jerry_pic,
         facebook: 'https://www.facebook.com/mrjerrytheajoguy',
-        instagram: 'instagram.com/mejerrytheajoguy',
+        instagram: 'https://www.instagram.com/mrjerrytheajoguy/',
         whatsapp: 'https://api.whatsapp.com/send?phone=2347086902001',
         phoneNumbers: '+2347086902001',
         phoneNumber2: ''
