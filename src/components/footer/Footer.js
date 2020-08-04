@@ -73,8 +73,10 @@ const H4 = styled.h4`
 const NavLink = styled(Link)`
   text-decoration: none !important;
   color: white;
-  :hover {
+  transition: all 0.3s ease-in;
+  &:hover {
     color: white;
+    font-weight: bold;
   }
 `;
 const A = styled.a`
@@ -216,7 +218,7 @@ export default () => {
       </div>
       <div className="copyright">
         <p>
-          © {new Date().getFullYear()} Betterlife Savings Int'l, all rights
+          © {new Date().getFullYear()} BetterLife Micro-Savings International Company Limited. All rights
           reserved
         </p>
         
