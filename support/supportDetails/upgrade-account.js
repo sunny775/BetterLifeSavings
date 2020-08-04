@@ -26,7 +26,4 @@ export default UpgradeAccount;
 
 const UpgradeDiv = styled.div`
   color: #FFF;
-  border: 1px groove transparent;
-  width: 100%;
-  padding: 5%;
 `;

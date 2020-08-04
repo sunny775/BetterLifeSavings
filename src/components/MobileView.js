@@ -98,6 +98,12 @@ export const MobileView = ({ width, close, data, userDetails }) => {
           Blog
         </Link>
       </div>
+      <div onClick={close}>
+        {" "}
+        <Link to="/support" className="nav-link">
+          Support
+        </Link>
+      </div>
       {data && userDetails && (
         <Wallet className="nav-link" onClick={close}>
           {userDetails.username ? (
@@ -108,7 +114,10 @@ export const MobileView = ({ width, close, data, userDetails }) => {
               </SignIn>
             </Link>
           ) : data.phoneNumber ? (
-            <Link to={`/settings/${data.phoneNumber}/edit-profile`} style={buttons}>
+            <Link
+              to={`/settings/${data.phoneNumber}/edit-profile`}
+              style={buttons}
+            >
               <img src={wallet} height="100%" alt="wallet" />
               <SignIn variant="outline-success" size="sm">
                 <strong>{data.phoneNumber}</strong>

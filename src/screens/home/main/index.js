@@ -40,12 +40,19 @@ color: white;
     opacity: 0.9;
   }
   box-shadow: 0px 1px 0px 0px #bdbdbd;
-`
+`;
+const BannerDivText = styled.div`
+  background-color: rgba(46, 125, 50, 0.7);
+  padding: 6rem 2rem;
+  @media screen (max-width:525px) {
+    padding: 1rem 0;
+  }
+`;
 
 const Main = () => (
   <Section className="col-md-9">
     <Banner>
-      <div>
+      <BannerDivText>
         <h2 style={{ fontWeight: "bold" }}>Plan Your Future by Saving Today</h2>
         <h4>
           Do not save what is left after spending
@@ -55,7 +62,7 @@ const Main = () => (
         <Button variant="secondary" size="sm">
           Start Now
         </Button>
-      </div>
+      </BannerDivText>
     </Banner>
     <H className='bg-secondary'>Saving Plans</H>
     <Plan>
@@ -69,13 +76,13 @@ const Main = () => (
       </Col>
     </Plan>
     <Plan>
-      <Col sm={6}>
+      <Col sm={6} md={{ order: 2 }}>
+        <Image src={Img} thumbnail />
+      </Col>
+      <Col sm={6} md={{ order: 1}}>
         <h1>Weekly Plan</h1>
         <p>This is the plan where you pick a particular and most convenient rate just like the daily plan and you pay on a weekly basis. You can make payments as much as you have and as many times. You will only be charged at your point of collection</p>
         <Button variant="info">start now</Button>
-      </Col>
-      <Col sm={6}>
-        <Image src={Img} thumbnail />
       </Col>
     </Plan>
     <Plan>
@@ -89,13 +96,13 @@ const Main = () => (
       </Col>
     </Plan>
     <Plan>
-      <Col sm={6}>
+      <Col sm={6} md={{ order: 2}}>
+        <Image src={Img} thumbnail />
+      </Col>
+      <Col sm={6} md={{ order: 1}}>
         <h1>Express Plan</h1>
         <p>This plan doesn’t require you to pick a rate. Just pay as much as you have and as many times and make debit whenever you like</p>
         <Button variant="info">start now</Button>
-      </Col>
-      <Col sm={6}>
-        <Image src={Img} thumbnail />
       </Col>
     </Plan>
   </Section>
