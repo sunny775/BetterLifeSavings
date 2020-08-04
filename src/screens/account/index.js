@@ -142,7 +142,7 @@ const Account = () => {
             <td>{`${date} / ${time}`}</td>
             <td>₦{e.amount}</td>
             <td>
-              <Badge variant="secondary">{e.status ? "approved" : null}</Badge>
+              <Badge variant={`${e.status ? 'success' : 'secondary'}`}>{e.status ? "approved" : 'requested'}</Badge>
             </td>
           </tr>
         );
