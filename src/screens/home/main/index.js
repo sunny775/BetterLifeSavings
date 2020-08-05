@@ -43,10 +43,11 @@ color: white;
   box-shadow: 0px 1px 0px 0px #bdbdbd;
 `;
 const BannerDivText = styled.div`
-  background-color: rgba(46, 125, 50, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   padding: 6rem 2rem;
   width: 100%;
   height: 100%;
+  border-radius: 4px;
   @media screen (max-width:525px) {
     padding: 1rem 0;
   }
