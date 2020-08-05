@@ -70,7 +70,6 @@ const App = () => {
 
   return (
     <div className={styles.App}>
-      <h1 style={{position: 'absolute', zIndex: 999}}>Hello Test</h1>
       <ReactNotification />
       <DepositRequest />
       <WithdrawalRequest />
